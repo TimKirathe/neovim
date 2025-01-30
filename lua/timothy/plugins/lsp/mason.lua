@@ -27,22 +27,12 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"lemminx",
-				"efm",
-				"solidity",
-				"sqlls",
 				"pyright",
 				"marksman",
 				"lua_ls",
-				"texlab",
-				"jdtls",
 				"jsonls",
-				"html",
-				"cssls",
 				"lua_ls",
-				"emmet_ls",
 				"pyright",
-				"clangd",
 				"bashls",
 			},
 			-- auto-install configured servers (with lspconfig)
@@ -56,10 +46,8 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"pylint", -- python linter
-				"eslint_d", -- js linter
 				"mypy", -- python linter
 				"ruff", -- python linter
-				"solhint", -- solidity linter
 			},
 		})
 	end,
