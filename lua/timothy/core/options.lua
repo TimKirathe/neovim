@@ -37,3 +37,12 @@ opt.splitbelow = true
 
 -- consider '-' in text to be part of a word.
 opt.iskeyword:append("-")
+
+-- keep cursor in middle of screen when scrolling
+opt.scrolloff = 999
+
+-- cursor can exist where there are blank lines in visual block mode
+opt.virtualedit = "block"
+
+-- previews of text substitution shown in separate window
+opt.inccommand = "split"

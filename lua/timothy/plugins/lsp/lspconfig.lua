@@ -74,23 +74,54 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		-- configure marksman server
-		lspconfig["marksman"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
 		-- configure python server
-		lspconfig["pyright"].setup({
+		lspconfig["pylsp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "python" },
+			settings = {
+				pylsp = {
+					plugins = {
+						pyflakes = { enabled = false },
+						pycodestyle = { enabled = false },
+						autopep8 = { enabled = false },
+						yapf = { enabled = false },
+						mccabe = { enabled = false },
+						pylsp_mypy = { enabled = false },
+						pylsp_black = { enabled = false },
+						pylsp_isort = { enabled = false },
+					},
+				},
+			},
 		})
 
-		-- configure jsonls server
-		lspconfig["jsonls"].setup({
+		-- configure ruff linter/lsp
+		lspconfig["ruff"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			commands = {
+				RuffAutofix = {
+					function()
+						vim.lsp.buf.execute_command({
+							command = "ruff.applyAutofix",
+							arguments = {
+								{ uri = vim.uri_from_bufnr(0) },
+							},
+						})
+					end,
+					description = "Ruff: Fix all auto-fixable problems",
+				},
+				RuffOrganizeImports = {
+					function()
+						vim.lsp.buf.execute_command({
+							command = "ruff.applyOrganizeImports",
+							arguments = {
+								{ uri = vim.uri_from_bufnr(0) },
+							},
+						})
+					end,
+					description = "Ruff: Format imports",
+				},
+			},
 		})
 
 		-- configure clangd server

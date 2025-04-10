@@ -18,13 +18,17 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement numbers with -" })
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line(s) down one level" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line(s) up one level" })
 
+keymap.set("n", "<leader>rg", ":%s/old/new/g", { desc = "Replace 'old' with 'new' globally in the file" })
+keymap.set("n", "<leader>rc", ":%s/old/new/gc", { desc = "Replace 'old' with 'new' globally in the file but ask for confirmation before each replace" })
+keymap.set("n", "<leader>re", ":%s/\\<old\\>/new/g", { desc = "Replace 'old' with 'new' globally in the file as an exact word match" })
+
+
 keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "Open new, empty tab" })
 keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close tab" })
 keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
 
--- global text replace within a file in vim
-keymap.set("n", "<leader>gr", ":%s/o/r/g", { desc = "Replace all instances of <o> with <r>" })
+keymap.set("n", "<leader>o", "o<ESC>k", { remap = true, silent = true, desc = "Insert newline and return back to normal mode" })
 
 -- plugin keymaps
 
