@@ -22,11 +22,17 @@ return {
 			-- opts.desc = "Show LSP references"
 			-- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-			-- opts.desc = "Go to declaration"
-			-- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+			opts.desc = "Go to declaration" -- In C this would take you to header. Not definition in .c file
+			keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
 			opts.desc = "Show LSP definitions"
 			keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+
+			opts.desc = "Show Document Symbols"
+			keymap.set("n", "gs", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+
+			opts.desc = "Show Workspace Symbols"
+			keymap.set("n", "gw", "<cmd>Telescope lsp_dynamic_workspace_symbols", opts)
 
 			opts.desc = "Show LSP implementations"
 			keymap.set("n", "gi", "<cmd>Telescope lsp_references<CR>", opts) -- show lsp implementations
@@ -154,6 +160,17 @@ return {
 						},
 					},
 				},
+			},
+		})
+
+		lspconfig["denols"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+			init_options = {
+				enable = true,
+				lint = true,
+				unstable = true,
 			},
 		})
 	end,

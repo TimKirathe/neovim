@@ -13,8 +13,8 @@ return {
 		"mfussenegger/nvim-dap-python",
 	},
 	keys = {
-		{ "<leader>db", "<cmd> DapToggleBreakpoint <CR>", desc = "Add breakpoint at line" },
-		{ "<leader>dr", "<cmd> DapContinue <CR>", desc = "Start or continue the debugger" },
+		{ "<leader>Bb", "<cmd> DapToggleBreakpoint <CR>", desc = "Add breakpoint at line" },
+		{ "<leader>Br", "<cmd> DapContinue <CR>", desc = "Start or continue the debugger" },
 	},
 	config = function()
 		local dap = require("dap")

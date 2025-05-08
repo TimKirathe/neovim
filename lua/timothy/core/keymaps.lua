@@ -9,7 +9,7 @@ keymap.set("v", ";;", "<ESC>", { desc = "Exit visual mode with ;;" }) -- Do ;; t
 
 keymap.set("n", "<leader>fq", ":q!<CR>", { desc = "Force quit" }) -- force quit with leader key
 
-keymap.set("n", "x", '"_x"', { desc = "When deleting characters, don't copy them to the register" })
+keymap.set("n", "x", '"_x"<ESC>', { desc = "When deleting characters, don't copy them to the register" })
 keymap.set("n", "<leader>cl", ":nohl<CR>", { desc = "Clear highlighted items after search" })
 
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment numbers with +" })
@@ -19,16 +19,40 @@ keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line(s) down on
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line(s) up one level" })
 
 keymap.set("n", "<leader>rg", ":%s/old/new/g", { desc = "Replace 'old' with 'new' globally in the file" })
-keymap.set("n", "<leader>rc", ":%s/old/new/gc", { desc = "Replace 'old' with 'new' globally in the file but ask for confirmation before each replace" })
-keymap.set("n", "<leader>re", ":%s/\\<old\\>/new/g", { desc = "Replace 'old' with 'new' globally in the file as an exact word match" })
-
+keymap.set(
+	"n",
+	"<leader>rc",
+	":%s/old/new/gc",
+	{ desc = "Replace 'old' with 'new' globally in the file but ask for confirmation before each replace" }
+)
+keymap.set(
+	"n",
+	"<leader>re",
+	":%s/\\<old\\>/new/g",
+	{ desc = "Replace 'old' with 'new' globally in the file as an exact word match" }
+)
 
 keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "Open new, empty tab" })
 keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close tab" })
 keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
 
-keymap.set("n", "<leader>o", "o<ESC>k", { remap = true, silent = true, desc = "Insert newline and return back to normal mode" })
+keymap.set(
+	"n",
+	"<leader>o",
+	"o<ESC>k",
+	{ remap = true, silent = true, desc = "Insert newline and return back to normal mode" }
+)
+
+keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "Go to previous open buffer" })
+keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "Go to next open buffer" })
+keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Delete current buffer" })
+keymap.set("n", "<leader>br", ":echo expand('%')<CR>", { desc = "Print relative path of buffer" })
+keymap.set("n", "<leader>bf", ":echo expand('%:p')<CR>", { desc = "Print absolute path of buffer" })
+keymap.set("n", "<leader>bt", ":echo expand('%:t')<CR>", { desc = "Print filename of buffer" })
+
+keymap.set({ "n", "v" }, "]w", "/^\\s*$<CR>", { desc = "Find next line that begins with whitespace" })
+keymap.set({ "n", "v" }, "[w", "?^\\s*$<CR>", { desc = "Find previous line that begins with whitespace" })
 
 -- plugin keymaps
 

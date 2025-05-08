@@ -2,6 +2,11 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
+	dependencies = {
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
@@ -28,6 +33,23 @@ return {
 					node_incremental = "<C-space>",
 					scope_incremental = false,
 					node_decremental = "<bs>",
+				},
+			},
+			textobjects = {
+				move = {
+					enable = true,
+					goto_next_start = {
+						["]f"] = "@function.outer",
+					},
+					goto_next_end = {
+						["]F"] = "@function.outer",
+					},
+					goto_previous_start = {
+						["[t"] = "@function.outer",
+					},
+					goto_previous_end = {
+						["[T"] = "@function.outer",
+					},
 				},
 			},
 		})
