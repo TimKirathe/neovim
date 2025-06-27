@@ -3,6 +3,7 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"BurntSushi/ripgrep",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -28,6 +29,8 @@ return {
 
 		telescope.load_extension("fzf")
 
+		-- Needs to be global because it's needed in attach_mappings function
+		-- below.
 		buffer_searcher = function()
 			builtin.buffers({
 				sort_mru = true,

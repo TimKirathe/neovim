@@ -67,6 +67,11 @@ return {
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+			opts.desc = "Signature information about the symbol under the cursor"
+			keymap.set("i", "<C-h>", function()
+				vim.lsp.buf.signature_help()
+			end, opts)
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
@@ -163,14 +168,29 @@ return {
 			},
 		})
 
-		lspconfig["denols"].setup({
+		-- lspconfig["denols"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+		-- 	init_options = {
+		-- 		enable = true,
+		-- 		lint = true,
+		-- 		unstable = true,
+		-- 	},
+		-- })
+
+		lspconfig["dartls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-			init_options = {
-				enable = true,
-				lint = true,
-				unstable = true,
+			settings = {
+				dart = {
+					analysisExcludedFolders = {
+						vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+						vim.fn.expand("$HOME/.pub-cache/"),
+						vim.fn.expand("/opt/homebrew/"),
+						vim.fn.expand("$HOME/tools/flutter/"),
+					},
+				},
 			},
 		})
 	end,
