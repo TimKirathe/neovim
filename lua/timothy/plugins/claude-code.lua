@@ -22,6 +22,12 @@ return {
 				scrolling = true, -- Enable scrolling keymaps (<C-f/b>) for page up/down
 			},
 		})
+
+		local keymap = vim.keymap
+		local opts = {}
+
+		opts.desc = "Start ClaudeCode"
+		keymap.set("n", "<leader>cc", "<cmd>ClaudeCode<CR>", opts)
 	end,
 }
 
