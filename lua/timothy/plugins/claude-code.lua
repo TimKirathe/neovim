@@ -1,34 +1,57 @@
 return {
-	"greggh/claude-code.nvim",
+	"coder/claudecode.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"folke/which-key.nvim",
+		"folke/snacks.nvim",
+		"nvim-tree/nvim-tree.lua",
 	},
-	config = function()
-		require("claude-code").setup({
-			window = {
-				position = "vertical",
-			},
-			keymaps = {
-				toggle = {
-					normal = "<C-,>", -- Normal mode keymap for toggling Claude Code, false to disable
-					terminal = "<C-,>", -- Terminal mode keymap for toggling Claude Code, false to disable
-					variants = {
-						continue = "<leader>cC", -- Normal mode keymap for Claude Code with continue flag
-						verbose = "<leader>cV", -- Normal mode keymap for Claude Code with verbose flag
-					},
-				},
-				window_navigation = true, -- Enable window navigation keymaps (<C-h/j/k/l>)
-				scrolling = true, -- Enable scrolling keymaps (<C-f/b>) for page up/down
-			},
-		})
-
-		local keymap = vim.keymap
-		local opts = {}
-
-		opts.desc = "Start ClaudeCode"
-		keymap.set("n", "<leader>cc", "<cmd>ClaudeCode<CR>", opts)
-	end,
+	config = true,
+	keys = {
+		{ "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Toggle ClaudeCode" },
+		{ "<leader>cf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus ClaudeCode" },
+		{ "<leader>cR", "<cmd>ClaudeCode --resume<cr>", desc = "Resume ClaudeCode" },
+		{ "<leader>cC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue ClaudeCode" },
+		{ "<leader>cb", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer to ClaudeCode" },
+		{
+			"<leader>cs",
+			"<cmd>ClaudeCodeSend<cr>",
+			mode = "v",
+			desc = "Send to ClaudeCode",
+		},
+		{
+			"<leader>cn",
+			"<cmd>ClaudeCodeTreeAdd<cr>",
+			desc = "Add file with ClaudeCode",
+			ft = { "NvimTree", "neo-tree", "oil" },
+		},
+		-- Diff management
+		{ "<leader>da", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept ClaudeCode diff" },
+		{ "<leader>dd", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny ClaudeCode diff" },
+		-- Tmux keybind management
+		{
+			"<C-h>",
+			[[<C-\><C-n><Cmd>TmuxNavigateLeft<CR>]],
+			mode = "t",
+			desc = "Navigate to left pane",
+		},
+		{
+			"<C-j>",
+			[[<C-\><C-n><Cmd>TmuxNavigateDown<CR>]],
+			mode = "t",
+			desc = "Navigate to bottom pane",
+		},
+		{
+			"<C-k>",
+			[[<C-\><C-n><Cmd>TmuxNavigateUp<CR>]],
+			mode = "t",
+			desc = "Navigate to top pane",
+		},
+		{
+			"<C-l>",
+			[[<C-\><C-n><Cmd>TmuxNavigateRight<CR>]],
+			mode = "t",
+			desc = "Navigate to right pane",
+		},
+	},
 }
 
 -- ## Avante config
