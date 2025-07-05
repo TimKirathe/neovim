@@ -51,6 +51,14 @@ return {
 			mode = "t",
 			desc = "Navigate to right pane",
 		},
+		{
+			"<Esc>",
+			"<Esc>",
+			mode = "t",
+			desc = "Avoid <Esc> mapping to regular functionality",
+			noremap = true,
+			silent = true,
+		},
 	},
 }
 
