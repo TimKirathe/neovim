@@ -36,7 +36,6 @@ return {
 					"javascriptreact",
 					"typescript",
 					"typescriptreact",
-					"solidity",
 				},
 			}),
 			formatting.stylua,

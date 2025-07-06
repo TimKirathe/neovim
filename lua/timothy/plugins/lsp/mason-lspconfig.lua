@@ -5,7 +5,6 @@ return {
 			"lua_ls",
 			"bashls",
 			"pylsp",
-			"denols",
 			"tailwindcss",
 		},
 		automatic_enable = false,
