@@ -168,32 +168,6 @@ return {
 			},
 		})
 
-		-- lspconfig["denols"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-		-- 	init_options = {
-		-- 		enable = true,
-		-- 		lint = true,
-		-- 		unstable = true,
-		-- 	},
-		-- })
-
-		lspconfig["dartls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				dart = {
-					analysisExcludedFolders = {
-						vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
-						vim.fn.expand("$HOME/.pub-cache/"),
-						vim.fn.expand("/opt/homebrew/"),
-						vim.fn.expand("$HOME/tools/flutter/"),
-					},
-				},
-			},
-		})
-
 		lspconfig["tailwindcss"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
